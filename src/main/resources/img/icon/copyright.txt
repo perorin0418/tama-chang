@@ -1,0 +1,4 @@
+black_cat.png{
+	url:https://piclike.net/event/691.html
+	copyright:https://piclike.net/policy.html
+}
