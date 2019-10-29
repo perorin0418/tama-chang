@@ -14,7 +14,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="480.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.net.perorin.tama.chang.control.MainController">
    <left>
-      <BorderPane prefHeight="531.0" prefWidth="45.0" BorderPane.alignment="CENTER">
+      <BorderPane fx:id="sidePane" prefHeight="531.0" prefWidth="45.0" BorderPane.alignment="CENTER">
          <center>
             <VBox prefHeight="531.0" prefWidth="40.0" spacing="10.0" style="-fx-background-color: rgb(239,239,241);" BorderPane.alignment="CENTER">
                <padding>

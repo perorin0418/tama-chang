@@ -12,6 +12,7 @@ import javafx.scene.control.Control
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.AnchorPane
+import javafx.scene.layout.BorderPane
 import javafx.scene.layout.Pane
 import javafx.scene.shape.Rectangle
 import javafx.util.Duration
@@ -20,6 +21,9 @@ class MainController{
 
 	// サイドパネルのヘッダー
 	@FXML Pane sideHeader
+
+	// サイドパネル
+	@FXML BorderPane sidePane
 
 	// ボディのヘッダー
 	@FXML Pane centerHeader
@@ -70,14 +74,33 @@ class MainController{
 		// 時間管理ボディを選択
 		changeBody(TIME_MANAGE_WINDOW)
 
+	}
+
+	def handleWindowShowEvent() {
+
+		// ヘッダー情報設定
+		headerInit()
+	}
+
+	def headerInit() {
+
 		// OSのバージョン確認
 		if(System.getProperty("os.name") == "Windows 10") {
-			sideHeader.setStyle("-fx-background-color:  linear-gradient(#FFFFFF, #EFEFF1)")
-			centerHeader.setStyle("-fx-background-color:   linear-gradient(#FFFFFF, #FAFAFA)")
+
+			// サイドパネルのヘッダーをグラデーションにする
+			sideHeader.setStyle("-fx-background-color: linear-gradient(#FFFFFF, #EFEFF1);")
+			centerHeader.setStyle("-fx-background-color: linear-gradient(#FFFFFF, #FAFAFA);")
 		}else {
-			sideHeader.setStyle("-fx-background-color:  rgb(#EFEFF1)")
-			centerHeader.setStyle("-fx-background-color:  rgb(#FAFAFA)")
+
+			// サイドパネルのヘッダーを単色にする
+			sideHeader.setStyle("-fx-background-color: #EFEFF1;")
+			centerHeader.setStyle("-fx-background-color: #FAFAFA;")
 		}
+
+		//サイドパネルの幅を設定
+		def width = sidePane.localToScene(sidePane.getBoundsInLocal()).getWidth()
+		sideHeader.setMinWidth(width - 1)
+
 	}
 
 	def loadFXML() {
@@ -109,6 +132,8 @@ class MainController{
 	 * @param windowName
 	 */
 	def changeBody(def windowName) {
+
+		headerInit()
 
 		// 現在のウィンドウを取得
 		def before = body.getChildren()[0]
