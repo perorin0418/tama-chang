@@ -1,95 +1,49 @@
 package org.net.perorin.tama.chang
 
-import java.time.LocalDate
-import java.time.LocalTime
-
-import com.calendarfx.model.Calendar;
-import com.calendarfx.model.CalendarSource;
-import com.calendarfx.model.Calendar.Style;
-import com.calendarfx.view.CalendarView;
+import org.net.perorin.tama.chang.control.MainController
+import org.net.perorin.tama.chang.util.Util
 
 import javafx.application.Application
+import javafx.fxml.FXMLLoader
+import javafx.scene.Parent
 import javafx.scene.Scene
+import javafx.scene.image.Image
 import javafx.stage.Stage
 
-//import javafx.fxml.FXMLLoader
-//import javafx.scene.Parent
-//import javafx.scene.image.Image
 class App extends Application {
 
-    void start(Stage stage) {
+	void start(Stage stage) {
 
-		CalendarView calendarView = new CalendarView(); (1)
+		// FXMLのレイアウトをロード
+		FXMLLoader loader = new FXMLLoader(Util.getResourceURL("fxml/MainWindow.fxml"))
+		Parent root = (Parent)loader.load()
+		MainController controller = (MainController)loader.getController()
+		stage.setOnShown({
+			controller.handleWindowShowEvent()
+		})
 
-						Calendar birthdays = new Calendar("Birthdays"); (2)
-						Calendar holidays = new Calendar("Holidays");
+		// タイトルセット
+		stage.setTitle("玉藻前 ～時間管理～")
 
-						birthdays.setStyle(Style.STYLE1); (3)
-						holidays.setStyle(Style.STYLE2);
+		// アイコン設定
+		stage.getIcons().add(new Image(Util.getResourceStr("img/icon/black_cat.png")))
+		stage.setMinWidth(500)
+		stage.setMinHeight(680)
+		stage.setMaxWidth(500)
+		stage.setMaxHeight(680)
+		stage.setMaximized(false)
+		stage.setResizable(false)
 
-						CalendarSource myCalendarSource = new CalendarSource("My Calendars"); (4)
-						myCalendarSource.getCalendars().addAll(birthdays, holidays);
+		// シーン生成
+		Scene scene = new Scene(root);
 
-						calendarView.getCalendarSources().addAll(myCalendarSource); (5)
+		scene.getStylesheets().add(Util.getResourceStr("css/application.css"));
+		stage.setScene(scene);
 
-						calendarView.setRequestedTime(LocalTime.now());
+		stage.show()
+	}
 
-						Thread updateTimeThread = new Thread("Calendar: Update Time Thread") {
-								@Override
-								public void run() {
-										while (true) {
-												Platform.runLater({
-														calendarView.setToday(LocalDate.now());
-														calendarView.setTime(LocalTime.now());
-												});
-
-												try {
-														// update every 10 seconds
-														sleep(10000);
-												} catch (InterruptedException e) {
-														e.printStackTrace();
-												}
-
-										}
-								};
-						};
-
-						updateTimeThread.setPriority(Thread.MIN_PRIORITY);
-						updateTimeThread.setDaemon(true);
-						updateTimeThread.start();
-
-						Scene scene = new Scene(calendarView);
-						stage.setTitle("Calendar");
-						stage.setScene(scene);
-						stage.setWidth(1300);
-						stage.setHeight(1000);
-						stage.centerOnScreen();
-						stage.show();
-
-//		// FXMLのレイアウトをロード
-//		FXMLLoader loader = new FXMLLoader(Util.getResourceURL("fxml/MainWindow.fxml"))
-//		Parent root = (Parent)loader.load()
-//		MainController controller = (MainController)loader.getController()
-//		stage.setOnShown({
-//			controller.handleWindowShowEvent()
-//		})
-//
-//		// タイトルセット
-//		stage.setTitle("タマちゃん ～時間管理～")
-//
-//		// アイコン設定
-//		stage.getIcons().add(new Image(Util.getResourceStr("img/icon/black_cat.png")))
-//
-//		// シーン生成
-//		Scene scene = new Scene(root);
-//
-//		scene.getStylesheets().add(Util.getResourceStr("css/application.css"));
-//		stage.setScene(scene);
-//
-//        stage.show()
-    }
-
-    public static void main(String[] args){
-        Application.launch(this, args)
-    }
+	public static void main(String[] args){
+		Application.launch(this, args)
+	}
 }

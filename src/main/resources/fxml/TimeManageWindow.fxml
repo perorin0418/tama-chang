@@ -1,13 +1,209 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.*?>
+<?import com.jfoenix.validation.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import jfxtras.scene.control.agenda.*?>
+<?import org.kordamp.ikonli.javafx.*?>
 
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="424.0" style="-fx-background-color: rgb(250,250,250);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.net.perorin.tama.chang.control.TimeManageController">
+   <top>
+      <BorderPane prefHeight="151.0" prefWidth="357.0" BorderPane.alignment="CENTER">
+         <center>
+            <BorderPane prefHeight="136.0" prefWidth="357.0" BorderPane.alignment="CENTER">
+               <center>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <left>
+                        <Pane prefHeight="146.0" prefWidth="147.0" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets left="10.0" />
+                           </BorderPane.margin>
+                           <children>
+                              <PieChart fx:id="pieChartContent" labelsVisible="false" layoutX="-16.0" layoutY="-16.0" legendSide="RIGHT" prefHeight="179.0" prefWidth="200.0" />
+                           </children>
+                        </Pane>
+                     </left>
+                     <center>
+                        <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <PieChart fx:id="pieChartLegend" labelsVisible="false" layoutX="23.0" layoutY="-2.0" prefHeight="150.0" prefWidth="637.0" />
+                           </children>
+                        </Pane>
+                     </center>
+                  </BorderPane>
+               </center></BorderPane>
+         </center>
+         <top>
+            <Pane prefHeight="5.0" prefWidth="357.0" BorderPane.alignment="CENTER" />
+         </top>
+      </BorderPane>
+   </top>
+   <right>
+      <BorderPane prefHeight="483.0" prefWidth="240.0" BorderPane.alignment="CENTER">
+         <center>
+            <BorderPane prefHeight="278.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <top>
+                  <BorderPane prefHeight="61.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <center>
+                        <BorderPane prefHeight="61.0" prefWidth="56.0" BorderPane.alignment="CENTER">
+                           <center>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                 <left>
+                                    <Pane prefHeight="29.0" prefWidth="41.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <ImageView fx:id="temperatureIcon" fitHeight="24.0" fitWidth="24.0" layoutX="-4.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Label fx:id="temperatureLabel" layoutX="19.0" layoutY="10.0" text="99°c" />
+                                       </children>
+                                    </Pane>
+                                 </left>
+                                 <center>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <ImageView fx:id="precipitationIcon" fitHeight="24.0" fitWidth="24.0" layoutX="18.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Label fx:id="precipitationLabel" layoutX="44.0" layoutY="10.0" text="199mm" />
+                                          <Label layoutX="-20.0" layoutY="10.0" prefHeight="36.0" prefWidth="110.0" text="Not Implemented" underline="true">
+                                             <font>
+                                                <Font name="Impact" size="12.0" />
+                                             </font>
+                                             <effect>
+                                                <DropShadow color="WHITE" spread="0.81" />
+                                             </effect>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                 </center>
+                              </BorderPane>
+                           </center>
+                           <top>
+                              <BorderPane prefHeight="19.0" prefWidth="142.0" BorderPane.alignment="CENTER">
+                                 <center>
+                                    <Pane prefHeight="19.0" prefWidth="92.0">
+                                       <children>
+                                          <ImageView fx:id="windIcon" fitHeight="20.0" fitWidth="20.0" layoutX="-3.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Label fx:id="windLabel" layoutX="21.0" layoutY="-2.0" text="00.9m/s" />
+                                       </children></Pane>
+                                 </center>
+                                 <right>
+                                    <Pane prefHeight="19.0" prefWidth="58.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <ImageView fx:id="weatherIcon1" fitHeight="30.0" fitWidth="30.0" layoutX="-3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                                             <viewport>
+                                                <Rectangle2D height="30.0" width="30.0" />
+                                             </viewport>
+                                          </ImageView>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="27.0" layoutY="8.0" rotate="11.3" stroke="TRANSPARENT" strokeType="INSIDE" width="1.0">
+                                             <effect>
+                                                <GaussianBlur radius="1.5" />
+                                             </effect>
+                                          </Rectangle>
+                                          <ImageView fx:id="weatherIcon2" fitHeight="30.0" fitWidth="30.0" layoutX="27.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                                             <viewport>
+                                                <Rectangle2D height="30.0" width="30.0" />
+                                             </viewport>
+                                          </ImageView>
+                                          <Label layoutX="-63.0" prefHeight="36.0" prefWidth="110.0" text="Not Implemented" underline="true">
+                                             <effect>
+                                                <DropShadow color="WHITE" spread="0.81" />
+                                             </effect>
+                                             <font>
+                                                <Font name="Impact" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                 </right>
+                              </BorderPane>
+                           </top>
+                        </BorderPane>
+                     </center>
+                     <left>
+                        <AnchorPane prefHeight="61.0" prefWidth="98.0" BorderPane.alignment="CENTER">
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="357.0" style="-fx-background-color: rgb(250,250,250);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                           <children>
+                              <Label fx:id="clockLabel_H" layoutX="8.0" layoutY="-8.0" text="12">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="clockLabel_C" layoutX="38.0" layoutY="-9.0" text=":">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="clockLabel_M" layoutX="54.0" layoutY="-8.0" text="59">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </left>
+                  </BorderPane>
+               </top>
+               <center>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <JFXTimePicker fx:id="workFrom" layoutX="15.0" layoutY="5.0" prefHeight="25.0" prefWidth="108.0" />
+                        <JFXTimePicker fx:id="workTo" layoutX="120.0" layoutY="5.0" prefHeight="25.0" prefWidth="108.0" />
+                        <JFXComboBox fx:id="workCode" labelFloat="true" layoutX="15.0" layoutY="49.0" prefHeight="25.0" prefWidth="206.0" promptText="[必須] 作業分類" />
+                        <JFXTextField fx:id="workTitle" layoutX="14.0" layoutY="88.0" prefHeight="25.0" prefWidth="208.0" promptText="[必須] 作業のタイトル" />
+                        <JFXTextArea fx:id="workDetail" labelFloat="true" layoutX="15.0" layoutY="129.0" prefHeight="136.0" prefWidth="207.0" promptText="[必須] 作業の詳細" />
+                        <JFXButton fx:id="workRec" buttonType="RAISED" layoutX="94.0" layoutY="277.0" onMouseClicked="#workRec_OnMouseClicked" prefHeight="51.0" prefWidth="128.0" style="-fx-background-color: WHITE;" text="作業記録" />
+                        <JFXRippler fx:id="rippler" layoutX="15.0" layoutY="279.0" maskType="CIRCLE" ripplerFill="#4059a9">
+                           <JFXHamburger fx:id="burger" style="-fx-padding:15;" />
+                        </JFXRippler>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </center>
+         <bottom>
+            <AnchorPane prefHeight="84.0" prefWidth="240.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="catComment" fitHeight="67.0" fitWidth="162.0" layoutX="7.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="catView" fitHeight="61.0" fitWidth="78.0" layoutX="162.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+         </bottom>
+      </BorderPane>
+   </right>
    <center>
-      <Button mnemonicParsing="false" text="TimeManage" BorderPane.alignment="CENTER" />
+      <Pane>
+         <children>
+            <AnchorPane layoutX="15.0" prefHeight="62.0" prefWidth="167.0">
+               <children>
+                  <Label fx:id="dateLabel" layoutX="-1.0" layoutY="-8.0" text="12/30">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="dateDow" layoutX="86.0" layoutY="18.0" text="Wed">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <JFXDatePicker fx:id="datePick" layoutX="135.0" layoutY="33.0" prefHeight="25.0" prefWidth="18.0" />
+               </children></AnchorPane>
+            <ScrollPane fx:id="agendaScroll" layoutX="15.0" layoutY="65.0" maxWidth="184.0" prefHeight="412.0" prefWidth="169.0" styleClass="agendaScroll" BorderPane.alignment="CENTER_LEFT">
+               <content>
+                  <BorderPane fx:id="agenda" prefHeight="401.0" prefWidth="150.0" />
+               </content>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" />
+               </BorderPane.margin>
+            </ScrollPane>
+         </children>
+      </Pane>
    </center>
+   <bottom>
+      <Pane prefHeight="0.0" prefWidth="424.0" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

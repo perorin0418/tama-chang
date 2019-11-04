@@ -39,6 +39,15 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
+                  <JFXButton fx:id="config_btn" cache="true" focusTraversable="false" layoutX="14.0" layoutY="70.0" onMouseClicked="#config_btn_onMouseClicked" ripplerFill="#9049ff">
+                     <graphic>
+                        <ImageView fx:id="config_img" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <viewport>
+                              <Rectangle2D height="32.0" width="32.0" />
+                           </viewport>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
                </children>
             </VBox>
          </center>

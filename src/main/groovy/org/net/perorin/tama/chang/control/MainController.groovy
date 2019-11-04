@@ -1,6 +1,6 @@
 package org.net.perorin.tama.chang.control
 
-import org.net.perorin.tama.chang.Util
+import org.net.perorin.tama.chang.util.Util
 
 import com.jfoenix.controls.JFXButton
 
@@ -34,11 +34,17 @@ class MainController{
 	// チームスピリット 画像
 	@FXML ImageView teamspirit_img
 
+	// コンフィグ 画像
+	@FXML ImageView config_img
+
 	// 時間管理 ボタン
 	@FXML JFXButton timeManage_btn
 
 	// チームスピリット ボタン
 	@FXML JFXButton teamspirit_btn
+
+	// コンフィグ ボタン
+	@FXML JFXButton config_btn
 
 	// 選択中パネル
 	@FXML Pane selectPanel
@@ -52,6 +58,7 @@ class MainController{
 	def bodyMap = [:]
 	def TIME_MANAGE_WINDOW = "TimeManageWindow"
 	def TEAM_SPIRIT_WINDOW = "TeamSpiritWindow"
+	def CONFIG_WINDOW = "ConfigWindow"
 
 	/**
 	 * 初期化処理
@@ -59,11 +66,8 @@ class MainController{
 	@FXML
 	def initialize() {
 
-		// 時間管理
-		timeManage_img.setImage(new Image(Util.getResourceStr("img/apply/Programming-Watch-icon.png")))
-
-		// チームスピリット
-		teamspirit_img.setImage(new Image(Util.getResourceStr("img/custom/teamspirit.png")))
+		// サイドパネル初期化
+		initSide()
 
 		// 選択位置
 		selectRecY = selectRec.getY();
@@ -79,10 +83,10 @@ class MainController{
 	def handleWindowShowEvent() {
 
 		// ヘッダー情報設定
-		headerInit()
+		initHeader()
 	}
 
-	def headerInit() {
+	def initHeader() {
 
 		// OSのバージョン確認
 		if(System.getProperty("os.name") == "Windows 10") {
@@ -103,9 +107,28 @@ class MainController{
 
 	}
 
+	/**
+	 * サイドパネル初期化
+	 */
+	def initSide() {
+
+		// 時間管理
+		timeManage_img.setImage(new Image(Util.getResourceStr("img/apply/Programming-Watch-icon.png")))
+
+		// チームスピリット
+		teamspirit_img.setImage(new Image(Util.getResourceStr("img/custom/teamspirit.png")))
+
+		// コンフィグ
+		config_img.setImage(new Image(Util.getResourceStr("img/apply/Programming-Administrative-Tools-icon.png")))
+	}
+
+	/**
+	 * FXML読み込み
+	 */
 	def loadFXML() {
 		bodyMap[TIME_MANAGE_WINDOW] = FXMLLoader.load(Util.getResourceURL("fxml/"  + TIME_MANAGE_WINDOW + ".fxml"))
 		bodyMap[TEAM_SPIRIT_WINDOW] = FXMLLoader.load(Util.getResourceURL("fxml/"  + TEAM_SPIRIT_WINDOW + ".fxml"))
+		bodyMap[CONFIG_WINDOW] = FXMLLoader.load(Util.getResourceURL("fxml/"  + CONFIG_WINDOW + ".fxml"))
 	}
 
 	/**
@@ -126,6 +149,12 @@ class MainController{
 		changeBody(TEAM_SPIRIT_WINDOW)
 	}
 
+	@FXML
+	def config_btn_onMouseClicked() {
+		selectAnimation(config_btn)
+		changeBody(CONFIG_WINDOW)
+	}
+
 	/**
 	 * ウィンドウ切り替え
 	 *
@@ -133,7 +162,7 @@ class MainController{
 	 */
 	def changeBody(def windowName) {
 
-		headerInit()
+		initHeader()
 
 		// 現在のウィンドウを取得
 		def before = body.getChildren()[0]
