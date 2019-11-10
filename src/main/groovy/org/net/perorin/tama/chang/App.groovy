@@ -23,10 +23,10 @@ class App extends Application {
 		})
 
 		// タイトルセット
-		stage.setTitle("玉藻前 ～時間管理～")
+		stage.setTitle("Bastet")
 
 		// アイコン設定
-		stage.getIcons().add(new Image(Util.getResourceStr("img/icon/black_cat.png")))
+		stage.getIcons().add(new Image(Util.getResourceStr("img/icon/mythology.png")))
 		stage.setMinWidth(500)
 		stage.setMinHeight(680)
 		stage.setMaxWidth(500)

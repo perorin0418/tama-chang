@@ -243,7 +243,7 @@ class TimeManageController {
 	def initCat() {
 
 		catComment.setImage(new Image(Util.getResourceStr("img/fukidashi/e0055_0.png")))
-		catView.setImage(new Image(Util.getResourceStr("img/cat/animal_01_a.png")))
+		catView.setImage(new Image(Util.getResourceStr("img/icon/bastet_frame.png")))
 	}
 
 	@FXML

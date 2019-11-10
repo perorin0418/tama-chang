@@ -23,6 +23,10 @@ javafx {
 	modules = ['javafx.controls', 'javafx.fxml']
 }
 
+run.doFirst {
+	workingDir = "${workingDir}\\src\\dist"
+}
+
 clean.doFirst {
 	def dir = new File("$rootDir/bin")
 	dir.deleteDir()
